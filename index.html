@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+      content="CCS (Clinical Consensus Selection) is a decoder-agnostic, reference-free inference-time selection framework for radiology report generation that samples multiple candidate reports and selects the one with the highest clinical consensus across the rollout pool.">
+  <meta name="keywords" content="CCS, Clinical Consensus Selection, AI radiology, Best-of-N decoding, inference-time selection, chest X-rays, multimodal LLMs, radiology report generation, deep learning, medical AI, biomedical NLP, MIMIC-CXR, Qwen3-VL-Embed, Xi Zhang">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CCS</title>
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="CCS: Clinical Consensus Selection for Radiology Report Generation">
+  <meta property="og:description" content="CCS is a decoder-agnostic, reference-free inference-time selection framework for radiology report generation that selects the candidate report with the highest clinical consensus across the rollout pool.">
+  <meta property="og:image" content="https://github.com/X-iZhang/CCS/blob/main/static/images/CCS_icon_logo.png">
+  <meta property="og:url" content="https://x-izhang.github.io/CCS/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card (for better previews on Twitter) -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CCS: Clinical Consensus Selection for Radiology Report Generation">
+  <meta name="twitter:description" content="CCS is a decoder-agnostic, reference-free inference-time selection framework for radiology report generation that selects the candidate report with the highest clinical consensus across the rollout pool.">
+  <meta name="twitter:image" content="https://github.com/X-iZhang/CCS/blob/main/static/images/CCS_icon_logo.png">
+
+  <!-- Favicon (for browser tabs and bookmarks) -->
+  <link rel="icon" type="image/png" href="static/images/CCS_icon.png">
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><img src="static/images/CCS_icon_logo.png"
+            style="height: 50px; margin-right: 10px; vertical-align: text-top;">CCS: <u>C</u>linical <u>C</u>onsensus <u>S</u>election for <br>Radiology Report Generation</h1>
+
+          <div class="column has-text-centered">
+            <div class="publication-subtitle">
+              <h5 class="subtitle is-4 has-text-danger" style="font-style: italic; font-weight: bold;">Preprint</h5>
+            </div>
+          </div>
+
+          <!-- Paper authors -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+                <a href="https://x-izhang.github.io/">Xi Zhang</a><sup>♠</sup>,
+            </span>
+            <span class="author-block">
+                <a href="https://yingshu-li.github.io/">Yingshu Li</a><sup>♣</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://mengzaiqiao.github.io/">Zaiqiao Meng</a><sup>♠,♢</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://jakelever.github.io/">Jake Lever</a><sup>♠</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.edho.net/">Edmond S. L. Ho</a><sup>♠</sup>
+            </span>
+          </div>
+
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup><a href="https://www.gla.ac.uk/schools/computing/">♠</a></sup>School of Computing Science, University of Glasgow</span><br>
+            <span class="author-block"><sup><a href="https://www.sydney.edu.au/engineering/schools/school-of-electrical-and-computer-engineering.html">♣</a></sup>School of Electrical and Computer Engineering, University of Sydney</span><br>
+            <span class="author-block"><sup><a href="https://ltl.mmll.cam.ac.uk/">♢</a></sup>Language Technology Lab, University of Cambridge</span><br>
+          </div>
+
+          <br>
+          <div class="column has-text-centered">
+
+            <a href="https://git.io/typing-svg" style="display:flex; justify-content:center;">
+              <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&center=true&width=520&lines=Reference-free%2C+decoder-agnostic+selection.;Sample+many%2C+keep+the+clinical+consensus.;Powered+by+Clinical+Consensus+Selection."
+                  alt="Typing SVG"
+                  style="margin-bottom:-10px; display:block;" />
+            </a>
+
+            <div class="publication-links">
+              <!-- Arxiv PDF link -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2605.30131" target="_blank"
+                   class="external-link button is-normal is-rounded is-danger">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+              <!-- Github link -->
+              <span class="link-block">
+                <a href="https://github.com/X-iZhang/CCS" target="_blank"
+                    class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero">
+  <div class="container is-max-widescreen">
+    <div class="hero-body">
+      <h4 class="subtitle has-text-centered"></h4>
+      🔥<strong><span style="color: #ff3860">[NEWS!]</span></strong>
+
+        <div class="news-item">
+          <strong>[28 May 2026]</strong> ⛳ Our preprint is now live on
+          <a href="https://arxiv.org/abs/2605.30131" target="_blank" rel="noopener noreferrer">arXiv</a> — check it out for details.
+        </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Radiology report generation (RRG) is commonly formulated as a single-path generation task, where a multimodal large language model (MLLM) produces one decoded report as the final output. While recent progress has largely been driven by scaling training data, model capacity, and retrieval mechanisms, improving report quality at inference time remains underexplored. In this work, we observe that fixed radiology MLLMs often generate clinically stronger reports elsewhere in their candidate pool than the one selected by default decoding, suggesting that inference-time decision making remains an overlooked bottleneck. To address this, we propose <strong><u>C</u></strong>linical <strong><u>C</u></strong>onsensus <strong><u>S</u></strong>election (<strong>CCS</strong>), a decoder-agnostic inference-time selection framework that samples multiple candidate reports and selects the one with the highest clinical consensus across the rollout pool. CCS unifies text-based utilities with a radiology-adapted utility computed by an image–report-trained multimodal embedder, which measures candidate agreement beyond surface-level textual similarity. Across three datasets and multiple radiology MLLMs, CCS consistently improves inference-time performance over single-path decoding and generic Best-of-N baselines, with particularly clear gains on clinical metrics. Further analysis shows that image-grounded utility forms a selection axis distinct from textual consensus and that substantial headroom remains for improving RRG at inference time.
+          </p>
+          <img src="static/images/featured.png" alt="CCS framework overview">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="hero teaser" style="
+  margin: 3em auto;
+  font-style: italic;
+  font-size: 1.3em;
+  font-family: 'Georgia', serif;
+  max-width: 720px;
+  padding: 0 1em;
+">
+  <p style="margin-bottom: 1.5em;">
+    “In the multitude of counsellors there is safety.”
+  </p>
+  <div style="text-align: right;">
+    — <strong>Proverbs 11:14</strong><br>
+    <em>King James Bible</em>
+  </div>
+</section>
+
+
+<!-- Why CCS -->
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered" style="margin-bottom: 20px;">
+      <h2 class="title is-3 has-text-centered">Why CCS? 🔬</h2>
+    </div>
+    <div class="columns is-centered">
+      <!-- 左侧：插入图像 -->
+      <div class="column is-half has-text-centered">
+        <img src="static/images/figure_1.png" alt="Candidate pools contain clinically stronger reports than single-path decoding" style="max-width: 100%; height: auto;">
+      </div>
+      <!-- 右侧：文本描述 -->
+      <div class="column is-half">
+        <div class="content has-text-justified">
+          <p>
+            Most radiology MLLMs commit to a <strong>single decoded report</strong> token by token, so one unfavourable step can omit a finding or assert one unsupported by the image, with no way to recover. Yet a fixed model often places <strong><span style="color: #ff3860">clinically stronger reports elsewhere in its candidate pool</span></strong> — the bottleneck is not what the model can generate, but <strong>which candidate it commits to</strong>.
+          </p>
+          <p>
+            <strong>Clinical Consensus Selection</strong> reframes this overlooked decision at inference time. Rather than retraining models or relying on retrieval corpora, CCS samples a pool of candidates and selects the one that best agrees with the rest under both textual and image-grounded clinical signals — keeping fluency while staying faithful to the radiograph.
+          </p>
+        </div>
+      </div>
+  </div>
+</section>
+
+<!-- How CCS Works -->
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">How CCS Works ⚙️</h2>
+      <div class="content has-text-justified">
+        <p>
+          <strong>Clinical Consensus Selection (CCS)</strong> is a <em>reference-free</em>, <em>decoder-agnostic</em> inference-time framework that reframes RRG as candidate selection — no retraining and no extra parameters. Given a chest radiograph, CCS proceeds in four stages:
+        </p>
+        <ul>
+          <li>
+            <strong>Rollout sampling:</strong> draw <em>N</em> candidate reports from the radiology MLLM via stochastic decoding.
+          </li>
+          <li>
+            <strong>Textual consensus utility:</strong> repurpose report-evaluation metrics as reference-free pairwise agreement scores between candidates.
+          </li>
+          <li>
+            <strong>Image-grounded utility:</strong> measure candidate agreement with <em>Qwen3-VL-Embed</em>, a multimodal embedder adapted on image–report pairs, capturing clinical agreement beyond surface text.
+          </li>
+          <li>
+            <strong>Highest-consensus selection:</strong> return the candidate with the highest <em>mean</em> pairwise consensus over the pool.
+          </li>
+        </ul>
+        <p>
+          By aggregating pairwise clinical consensus across the rollout pool, CCS turns a wasted set of discarded samples into a reliable selection signal. It is fully model-agnostic and integrates seamlessly with state-of-the-art radiology MLLMs.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section hero is-light">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Key Contributions ✨</h2>
+      <div class="content has-text-justified">
+        <ul>
+          <li><b style="color: #FF6347;">Inference-time Perspective:</b> We show candidate pools routinely contain reports with <strong>higher clinical reliability and consistency</strong> than single-path outputs — exposing inference-time decision making as an overlooked bottleneck in RRG.</li>
+          <li><b style="color: #4682B4;">CCS Framework:</b> We propose a <strong>decoder-agnostic Best-of-N</strong> method that aggregates pairwise clinical consensus using both <strong>textual</strong> and <strong>image–report-adapted multimodal</strong> utilities, requiring no retraining, architectural changes, or reference reports.</li>
+          <li><b style="color: #32CD32;">Consistent Gains:</b> Across <em>three datasets</em> and <em>multiple radiology MLLMs</em>, CCS improves RRG at inference time and identifies image-grounded utility as a <strong>distinct selection axis</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Results -->
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Main Results 📈</h2>
+      <div class="content has-text-justified">
+        <div class="columns is-centered">
+          <div class="column is-centered">
+            <img src="static/images/table_1.png" alt="CCS main results table 1" style="display: block; margin: 0 auto; max-width: 100%;">
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-centered">
+            <img src="static/images/table_2.png" alt="CCS main results table 2" style="display: block; margin: 0 auto; max-width: 100%;">
+          </div>
+        </div>
+        <p>
+          On MIMIC-CXR, CCS improves <strong>all</strong> radiology-specific metrics over Sampling (e.g. RadGraph-F1 <strong>0.1989 → 0.2134</strong>, CheXbert-F1⁵ <strong>0.5041 → 0.5370</strong>), with gains statistically significant (<em>p</em> &lt; 0.05). Unlike generic Best-of-N selectors (Self-Certainty, ModeX) that give inconsistent or negative clinical gains, CCS improves <strong>consistently across all backbones and datasets</strong>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Analysis -->
+<section class="section hero is-light">
+  <div class="columns is-centered has-text-centered">
+    <div class="column is-four-fifths">
+      <h2 class="title is-3">Analysis 📊</h2>
+      <div class="content has-text-justified">
+        <div class="columns is-centered">
+          <div class="column is-centered">
+            <img src="static/images/figure_3.png" alt="CCS analysis figure" style="display: block; margin: 0 auto; max-width: 100%;">
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-centered">
+            <img src="static/images/table_3.png" alt="CCS per-label analysis table" style="display: block; margin: 0 auto; max-width: 100%;">
+          </div>
+        </div>
+        <p>
+          Per-label F1 shows CCS recovers abnormal findings that text-only consensus suppresses — confirming that <strong>image-grounded utility is a selection axis distinct from textual consensus</strong>, with substantial headroom still remaining for improving RRG at inference time.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Case Study -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="has-text-centered" style="margin-bottom: 20px;">
+      <h2 class="title is-3 has-text-centered">Case Study 🔍</h2>
+    </div>
+    <div class="columns is-centered">
+      <div class="content has-text-justified">
+        <img src="static/images/case_study.png" alt="CCS case study on a real MIMIC-CXR example" style="max-width: 100%; height: auto;">
+      </div>
+    </div>
+    <div class="content has-text-justified" style="margin-top: 1.5rem;">
+      <p>
+        On a real MIMIC-CXR case, single-path decoding asserts factual errors (false “clear lungs”, a mislocalised catheter), whereas CCS selects a more <strong><span style="color: #018afb;">image-grounded</span></strong> report (CheXbert-F1⁵ <strong>1.0000</strong> vs Sampling <strong>0.5000</strong>). By favouring the candidate that agrees with the rest of the pool, CCS suppresses isolated hallucinations and surfaces findings the default decode misses.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hero is-light" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX 📚</h2>
+    <pre><code>@article{zhang2026ccs,
+  title={CCS: Clinical Consensus Selection for Radiology Report Generation},
+  author={Zhang, Xi and Li, Yingshu and Meng, Zaiqiao and Lever, Jake and Ho, Edmond SL},
+  journal={arXiv preprint arXiv:2605.30131},
+  year={2026}
+}
+</code></pre>
+  </div>
+</section>
+
+<section class="section" id="Acknowledgement">
+  <div class="container is-max-desktop content">
+    <h2 class="title">Acknowledgement</h2>
+    <p>
+      This website is adapted from <a
+      href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license"
+                                          href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+      Commons Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+  </div>
+</section>
+
+</body>
+
+</html>
