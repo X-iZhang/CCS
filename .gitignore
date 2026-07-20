@@ -1,0 +1,55 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Build and distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+env/
+venv/
+.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+CCS.ipynb
+
+# Gradio demo artefacts (certificates, flagged samples, temp uploads)
+.gradio/
+**/flagged/
+
+# Model / dataset caches
+cache/
+.cache/
+*.pt
+*.bin
+*.safetensors
+
+# Local tool config
+.claude/settings.local.json
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment variables
+.env
+
+# OS generated
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Rollout pools and selection outputs
+*.jsonl
