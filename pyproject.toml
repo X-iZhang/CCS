@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccs"
+version = "1.0.0"
+description = "CCS: Clinical Consensus Selection for Radiology Report Generation"
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+license = { text = "MIT" }
+authors = [{ name = "Xi Zhang" }]
+maintainers = [{ name = "Xi Zhang" }]
+keywords = ["radiology", "MLLM", "report-selection", "best-of-n", "consensus", "medical-ai"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "numpy",
+    "tqdm",
+    # The version used in the CCS paper. It hard-pins torch==2.9.1 and
+    # transformers==4.57.3, which keeps the whole environment reproducible and
+    # avoids the casing / f1chexbert-cuda issues introduced by RadEval 2.2.x.
+    "RadEval==0.0.6rc2",
+    # RadEval 0.0.6rc2 only requires scikit-learn>=1.8.0, but its CheXbert code
+    # unpacks the 4-tuple returned by sklearn._check_targets in 1.8.0. sklearn
+    # 1.9.0 returns a 5-tuple -> "too many values to unpack". Pin to 1.8.0.
+    "scikit-learn==1.8.0",
+    "qwen-vl-utils",
+]
+
+[project.optional-dependencies]
+# Only needed for the Gradio demo (`python -m ccs.app`); kept out of the core
+# install so importing ccs stays lightweight.
+app = ["gradio>=5.0"]
+
+[project.urls]
+"Homepage" = "https://github.com/X-iZhang/CCS"
+"Bug Tracker" = "https://github.com/X-iZhang/CCS/issues"
+"Documentation" = "https://github.com/X-iZhang/CCS#readme"
+
+[tool.setuptools.packages.find]
+exclude = ["assets*", "benchmark*", "docs", "dist*", "playground*", "scripts*", "tests*"]
